@@ -38,7 +38,7 @@ def labels(d):
     Df = d[['mainroad_n','guestroom_n','basement_n','hotwaterheating_n','airconditioning_n','prefarea_n','furnishingstatus_n','area','bedrooms','bathrooms','parking']]
 
     return Df
-print(labels(df))
+
 
 x = df[['mainroad_n','guestroom_n','basement_n','hotwaterheating_n','airconditioning_n','prefarea_n','furnishingstatus_n','area','bedrooms','bathrooms','parking']]
 y = df['price']
@@ -48,6 +48,8 @@ x_train,x_test,y_train,y_test = train_test_split(x,y,random_state=42,test_size=0
 clf = RandomForestRegressor(n_estimators=250,max_depth=6,max_leaf_nodes=9,max_features='log2')
 
 clf.fit(x_train,y_train)
+
+joblib.dump(clf, 'models.sav')
 
 
 #param_grid = {
@@ -65,6 +67,7 @@ clf.fit(x_train,y_train)
 #print(grid_search.best_estimator_)
 
 def model():
-    pass
+    loaded_model = joblib.load('models.sav')
+    return loaded_model
 
 

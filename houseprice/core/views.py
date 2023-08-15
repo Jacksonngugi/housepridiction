@@ -3,6 +3,7 @@ from django.contrib import messages
 import pandas as pd
 from classifier import labels
 import numpy
+import joblib
 
 
 # Create your views here.
@@ -40,7 +41,13 @@ def index(request):
 
 })
         pred = labels(df)
-        print(pred)
+        loaded_model = joblib.load('models.sav')
+
+        price = loaded_model.predict(pred)
+
+        print(price)
+
+        return render(request,'index.html',price=price)
     else:
        return render(request,'index.html')
     
