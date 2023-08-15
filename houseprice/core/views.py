@@ -45,9 +45,8 @@ def index(request):
 
         price = loaded_model.predict(pred)
 
-        print(price)
+        return render (request,'price.html',{'price':price})
 
-        return render(request,'index.html',price=price)
     else:
        return render(request,'index.html')
     
