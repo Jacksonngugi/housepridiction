@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 import pandas as pd
 from classifier import labels
-import numpy
+import numpy as np
 import joblib
 
 
@@ -25,6 +25,8 @@ def index(request):
 
         if ((bedroom == '') or (bedroom == '') or (parking == '') or (bathroom == '')):
             messages.info(request,'Fill all the fields first!!!')
+
+            return redirect('index')
         else:
             df = pd.DataFrame({
     'mainroad':[mainroad],
@@ -43,9 +45,9 @@ def index(request):
         pred = labels(df)
         loaded_model = joblib.load('models.sav')
 
-        price = loaded_model.predict(pred)
+        price = np.around(loaded_model.predict(pred))
 
-        return render (request,'price.html',{'price':price})
+        return render (request,'index.html',{'price':price})
 
     else:
        return render(request,'index.html')

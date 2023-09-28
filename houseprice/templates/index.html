@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Houseprice.net</title>
+  <title>Houseprice AI.net</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -75,7 +75,7 @@
       </div>
       <form style="background-color: rgb(7, 7, 7);" method="Post" action="">
         {%csrf_token%}
-        <input type="number" id="lname" name="landarea" placeholder="Area of Land"><br>
+        <input type="text" id="lname" name="landarea" placeholder="Area of Land in m^2"><br>
         <input type="number" id="fname" name="Bedroom" placeholder="Number of Bedroom"><br>
         <input type="number" id="lname" name="Bathroom" placeholder="Number of Bathrooms"><br>
         <input type="number" id="lname" name="Parking" placeholder="Number of Parking"><br>
@@ -110,6 +110,8 @@
      </select></h6><br>
      <input type="submit" value="submit">
       </form>
+
+      <p style="color: azure;">Estiimated price: {{price}}</p>
 
       </div>
     </div>

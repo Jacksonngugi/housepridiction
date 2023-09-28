@@ -12,6 +12,8 @@ df = pd.read_csv("Housing.csv")
 df['mainroadT'] = df['mainroad'].str.split(',')
 
 categorical_features = ['mainroad','guestroom','basement','hotwaterheating','airconditioning','prefarea','furnishingstatus']
+
+# craete a dict containing labelencoders for all the columns that contains values that need to be encoded
 encoders = dict()
 for cat in categorical_features:
     encoders[cat] = LabelEncoder()
@@ -65,9 +67,3 @@ joblib.dump(clf, 'models.sav')
 #grid_search.fit(x_train, y_train)
 
 #print(grid_search.best_estimator_)
-
-def model():
-    loaded_model = joblib.load('models.sav')
-    return loaded_model
-
-
